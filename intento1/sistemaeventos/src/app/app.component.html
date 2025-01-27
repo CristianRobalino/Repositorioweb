@@ -1,0 +1,41 @@
+
+<!-- Banner -->
+<div class="banner">
+  <h1>Bienvenido a la Gestión de Eventos</h1>
+  <p>Administra registros, eventos y asistentes de manera eficiente.</p>
+</div>
+<div class="navbar">
+  <button (click)="navigateToNewTab('registrations')">Gestionar Registros a Eventos</button>
+  <button (click)="navigateToNewTab('assistants')">Gestionar Asistentes</button>
+  <button (click)="navigateToNewTab('events')">Gestionar Eventos</button>
+</div>
+<router-outlet></router-outlet>
+<full-calendar [options]="calendarOptions">
+  <ng-template #eventContent let-arg>
+    <b>{{arg.timeText}}</b>
+    <i>{{arg.event.title}}</i>
+  </ng-template>
+</full-calendar>
+
+<p-popover #eventPopover>
+  <div class="flex flex-col gap-4">
+    <strong>Fecha:</strong> {{ selectedEvent?.eventDate | date }}
+    <p><strong>Nombre del Evento:</strong> {{ selectedEvent?.eventName }}</p>
+    
+    <div *ngIf="selectedEvent?.selectedCities?.length > 0">
+      <strong>Ciudades:</strong>
+      <ul>
+        <li *ngFor="let city of selectedEvent.selectedCities">{{ city }}</li>
+      </ul>
+    </div>
+  </div>
+</p-popover>
+
+<footer class="footer">
+  <p>&copy; 2025 Mi Empresa. Todos los derechos reservados.</p>
+  <p>
+    <a href="/terms">Términos de uso</a> | 
+    <a href="/contact">Contacto</a> | 
+    <a href="https://twitter.com" target="_blank">Twitter</a>
+  </p>
+</footer>

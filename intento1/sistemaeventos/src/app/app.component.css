@@ -1,0 +1,255 @@
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e1e;
+  padding: 1rem;
+  gap: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar button {
+  background-color: #333333;
+  color: #fff5e1; /* Dorado suave */
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #555555;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.navbar button:hover {
+  background-color: #444444;
+  border-color: #ffcc00; /* Dorado más brillante al pasar el mouse */
+  color: #fff9e0;
+  transform: scale(1.05);
+}
+
+.navbar button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.3); /* Dorado al enfocarse */
+}
+
+/* Router Outlet */
+router-outlet {
+  display: block;
+  margin: 2rem auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Full Calendar */
+full-calendar {
+  margin: 2rem auto;
+  max-width: 1200px;
+  background: #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+}
+
+full-calendar .fc-header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #444444;
+  color: #fff5e1; /* Dorado suave */
+}
+
+full-calendar .fc-daygrid-day {
+  border: 1px solid #3a3a3a;
+  transition: background-color 0.3s ease;
+  color: #fff5e1; /* Dorado suave para el texto */
+}
+
+full-calendar .fc-daygrid-day:hover {
+  background-color: #3e3e3e;
+  border-color: #ffcc00; /* Dorado en el borde */
+}
+
+full-calendar .fc-event {
+  background-color: #d4af37; /* Dorado para los eventos */
+  color: #fff5e1;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+full-calendar .fc-event:hover {
+  background-color: #b38b28; /* Dorado más oscuro */
+}
+
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #121212;
+  color: #fff5e1; /* Dorado suave */
+  margin: 0;
+}
+
+b {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+  color: #bbbbbb;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffcc00; /* Dorado en el scrollbar */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffd700; /* Dorado más brillante */
+}
+::ng-deep .p-popover {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+::ng-deep .p-popover {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Banner */
+.banner {
+  background-color: #2196F3;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 20px;
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.banner p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  margin-top: auto;  /* Esto asegura que el footer se quede al final */
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 10px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+.banner {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer {
+    padding: 10px;
+  }
+}
+
+/* Estilo general para el Popover */
+p-popover {
+  background-color: #ffffff;  /* Fondo blanco */
+  border-radius: 8px;         /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  padding: 15px;              /* Espaciado interno */
+  max-width: 300px;           /* Máximo ancho */
+  font-family: 'Arial', sans-serif;  /* Fuente moderna */
+  z-index: 1000;              /* Asegúrate de que esté encima de otros elementos */
+  border: 2px solid transparent;  /* Borde inicial transparente */
+  transition: border-color 0.3s ease-in-out; /* Transición suave al cambiar el color del borde */
+}
+
+/* Animación para el cambio de color de borde */
+@keyframes borderChange {
+  0% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #4CAF50;  /* Un color verde, pero puedes cambiarlo por el color que prefieras */
+  }
+  100% {
+    border-color: transparent;
+  }
+}
+
+/* Clase para iniciar la animación cuando se activa el popover */
+p-popover.show-border {
+  animation: borderChange 1.5s infinite;  /* Animación que cambia el borde en 1.5 segundos, de forma infinita */
+}
+
+/* Títulos y textos dentro del popover */
+p-popover strong {
+  color: #333;  /* Color de texto oscuro */
+  font-size: 1.1rem;  /* Un poco más grande que el texto normal */
+  font-weight: bold;
+}
+
+/* Texto del evento */
+p-popover p {
+  margin: 5px 0;  /* Margen entre los párrafos */
+  font-size: 0.95rem;  /* Un tamaño de texto adecuado */
+  color: #555;  /* Texto gris claro */
+}
+
+/* Lista de ciudades */
+p-popover ul {
+  list-style-type: none;  /* Eliminar puntos de la lista */
+  padding-left: 0;        /* Eliminar el padding izquierdo */
+}
+
+p-popover li {
+  font-size: 0.9rem;    /* Un tamaño de texto más pequeño */
+  color: #777;          /* Texto gris */
+  padding: 5px 0;       /* Espaciado entre los elementos */
+  border-bottom: 1px solid #eee;  /* Línea sutil debajo de cada ciudad */
+}
+
+/* Si la lista está vacía, ocultar la sección */
+p-popover div:empty {
+  display: none;
+}

@@ -1,0 +1,70 @@
+<p-toast></p-toast>
+
+
+<p-button 
+    (onClick)="openAssistantDialog()" 
+    icon="pi pi-plus"
+    label="Registrar Asistente">
+</p-button>
+
+<p-table [value]="assistants" class="p-mt-4">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre del Asistente</th>
+      <th>Email del Asistente</th>
+      <th>Teléfono del Asistente</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-assistant let-i="rowIndex">
+    <tr>
+      <td>{{ assistant.assistantName }}</td>
+      <td>{{ assistant.assistantEmail }}</td>
+      <td>{{ assistant.assistantPhone }}</td>
+      <td>
+        <p-button (onClick)="editAssistant(i)" label="Editar" [rounded]="true" severity="warn"></p-button>
+        <p-button (onClick)="deleteAssistant(i)" label="Eliminar" [rounded]="true" severity="danger"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="displayAssistantDialog"
+  header="Gestión de Asistentes"
+  [modal]="true"
+  [closable]="false"
+  [resizable]="false"
+  style="width: 400px;"
+>
+  <form [formGroup]="assistantFormGroup" (ngSubmit)="saveAssistant()">
+    <div class="p-field">
+      <label for="assistantName">Nombre del Asistente</label>
+      <input id="assistantName" pInputText formControlName="assistantName" required />
+    </div>
+    <div class="p-field">
+      <label for="assistantEmail">Email del Asistente</label>
+      <input id="assistantEmail" pInputText formControlName="assistantEmail" required />
+    </div>
+    <div class="p-field">
+        <label for="assistantPhone">Teléfono del Asistente</label>
+        <p-inputMask id="assistantPhone" formControlName="assistantPhone" mask="(+999) 9999-9999-99" placeholder="(123) 456-7890"></p-inputMask> <!-- Agregado InputMask -->
+    </div>
+    <div class="p-mt-4">
+      <p-button 
+          label="Guardar" 
+          icon="pi pi-check" 
+          type="submit" 
+          class="p-mr-2">
+      </p-button>
+      <p-button 
+          label="Cancelar" 
+          icon="pi pi-times" 
+          class="p-button-secondary" 
+          (onClick)="displayAssistantDialog = false">
+      </p-button>
+    </div>
+  </form>
+</p-dialog>
+
+

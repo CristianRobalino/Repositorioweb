@@ -1,0 +1,75 @@
+<p-toast></p-toast>
+
+<p-button 
+    (onClick)="openEventDialog()" 
+    icon="pi pi-plus"
+    label="Registrar Nuevo Evento"
+    >
+    
+</p-button>
+
+<p-table [value]="events" class="p-mt-4">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre del Evento</th>
+      <th>Fecha del Evento</th>
+      <th>Ciudades</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-event let-i="rowIndex">
+    <tr>
+      <td>{{ event.eventName }}</td>
+      <td>{{ event.eventDate | date: 'shortDate' }}</td>
+      <td>{{ event.selectedCities.join(', ')  }}</td>
+      <td>
+        <p-button  (onClick)="editEvent(i)" label="Editar" [rounded]="true" severity="warn" />
+        <p-button  (onClick)="deleteEvent(i)" label="Eliminar" [rounded]="true" severity="danger"/>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="displayEventDialog"
+  header="Gestión de Eventos"
+  [modal]="false"
+  [closable]="false"
+  [resizable]="false"
+  style="width: 900px; max-height: 80vh; overflow: auto;"
+>
+  <form [formGroup]="eventFormGroup" (ngSubmit)="saveEvent()">
+    <div class="p-field">
+      <label for="eventName">Nombre del Evento</label>
+      <input id="eventName" pInputText formControlName="eventName" required />
+    </div>
+    <div class="p-field">
+      <label for="eventDate">Fecha del Evento</label>
+      <input id="eventDate" pInputText formControlName="eventDate" type="date" required [min]="today"  />
+    </div>
+    <div class="p-field">
+      <label for="selectedCities">Seleccionar Ciudades</label>
+      <p-multiSelect 
+          [options]="cities" 
+          formControlName="selectedCities" 
+          optionLabel="name" 
+          placeholder="Seleccionar Ciudades"
+          [panelStyle]="{'max-height': '200px', 'overflow': 'auto'}"></p-multiSelect>
+      
+    </div>
+    <div class="p-mt-4">
+      <p-button 
+          label="Guardar" 
+          icon="pi pi-check" 
+          type="submit" 
+          class="p-mr-2">
+      </p-button>
+      <p-button 
+          label="Cancelar" 
+          icon="pi pi-times" 
+          class="p-button-secondary" 
+          (onClick)="displayEventDialog = false">
+      </p-button>
+    </div>
+  </form>
+</p-dialog>
